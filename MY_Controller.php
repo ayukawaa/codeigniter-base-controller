@@ -8,7 +8,7 @@
  * @subpackage MY_Controller
  * @license GPLv3 <http://www.gnu.org/licenses/gpl-3.0.txt>
  * @link http://github.com/jamierumbelow/codeigniter-base-controller
- * @version 1.0.0
+ * @version 1.1.0
  * @author Jamie Rumbelow <http://jamierumbelow.net>
  * @copyright Copyright (c) 2009, Jamie Rumbelow <http://jamierumbelow.net>
  */
@@ -49,6 +49,7 @@ class MY_Controller extends Controller {
 	 * footers etc. 
 	 *
 	 * @var array
+	 * @since 1.1.0
 	 */
 	protected $asides = array();
 	
@@ -169,6 +170,7 @@ class MY_Controller extends Controller {
 	 * view at once.
 	 *
 	 * @return void
+	 * @since 1.0.5
 	 * @author Jamie Rumbelow
 	 */
 	protected function render() {
@@ -184,6 +186,7 @@ class MY_Controller extends Controller {
 	 * @param array $data The data or collection to pass through
 	 * @param boolean $loop Whether or not to loop through a collection
 	 * @return string
+	 * @since 1.1.0
 	 * @author Jamie Rumbelow and Jeremy Gimbel
 	 */
 	public function partial($name, $data = null, $loop = TRUE) {
@@ -217,6 +220,7 @@ class MY_Controller extends Controller {
  * @param array $data The data or collection to pass through
  * @param boolean $loop Whether or not to loop through a collection
  * @return string
+ * @since 1.1.0
  * @author Jamie Rumbelow and Jeremy Gimbel
  */
 function partial($name, $data = null, $loop = TRUE) {
