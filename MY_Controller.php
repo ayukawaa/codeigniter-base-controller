@@ -107,16 +107,17 @@ class MY_Controller extends Controller {
 	private function _load_view() {
 		if ($this->view !== FALSE) {
 			$view = ($this->view !== null) ? $this->view . '.php' : $this->router->class . '/' . $this->router->method . '.php';
-
-			$data['yield']          = $this->prerendered_data;
-			$data['yield']         .= $this->load->view($view, $this->data, TRUE); 
-			$data['title']          = ($this->title !== null) ? $this->title : "Jamie Rumbelow Rocks!";
+	
+			$data['yield'] =  $this->prerendered_data;
+			$data['yield'] .= $this->load->view($view, $this->data, TRUE);
 			
 			if (!empty($this->asides)) {
 				foreach ($this->asides as $name => $file) {
 					$data['yield_'.$name] = $this->load->view($file, $this->data, TRUE);
 				}
 			}
+			
+			$data = array_merge($this->data, $data);
 			
 			if (!isset($this->layout)) {
 				if (file_exists(APPPATH . 'views/layouts/' . $this->router->class . '.php')) {

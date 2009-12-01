@@ -41,6 +41,7 @@ Upcoming Features
 Version History
 ---------------
 
+* 1.1.1 $this->data is now passed to layout, after the view is rendered
 * 1.1.0 Partial support, asides and an improvement to documentation
 * 1.0.5 Added support for multiple view rendering.
 * 1.0.2 A few bugfixes
