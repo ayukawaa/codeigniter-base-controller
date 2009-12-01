@@ -37,3 +37,11 @@ Upcoming Features
 * Custom model names
 * Better support for layout partials (sidebars)
 * Automagic Library Loading
+
+Version History
+---------------
+
+* 1.1.0 Partial support, asides and an improvement to documentation
+* 1.0.5 Added support for multiple view rendering.
+* 1.0.2 A few bugfixes
+* 1.0.0 First release of library and basic functionality, with basic readme 
