@@ -40,6 +40,26 @@ class MY_Controller extends Controller {
 	protected $layout;
 	
 	/**
+	 * An array of asides. The key is the name
+	 * to reference by and the value is the file.
+	 * The class will loop through these, parse them 
+	 * and push them via a variable to the layout. 
+	 * 
+	 * This allows any number of asides like sidebars,
+	 * footers etc. 
+	 *
+	 * @var array
+	 */
+	protected $asides = array();
+	
+	/**
+	 * The directory to store partials in.
+	 *
+	 * @var string
+	 */
+	protected $partial = 'partials';
+	
+	/**
 	 * The models to load into the controller.
 	 *
 	 * @var array
@@ -89,7 +109,13 @@ class MY_Controller extends Controller {
 
 			$data['yield']          = $this->prerendered_data;
 			$data['yield']         .= $this->load->view($view, $this->data, TRUE); 
-			$data['title']          = ($this->title !== null) ? $this->title : 'Apprenticeship Academy';
+			$data['title']          = ($this->title !== null) ? $this->title : "Jamie Rumbelow Rocks!";
+			
+			if (!empty($this->asides)) {
+				foreach ($this->asides as $name => $file) {
+					$data['yield_'.$name] = $this->load->view($file, $this->data, TRUE);
+				}
+			}
 			
 			if (!isset($this->layout)) {
 				if (file_exists(APPPATH . 'views/layouts/' . $this->router->class . '.php')) {
@@ -149,4 +175,51 @@ class MY_Controller extends Controller {
 	  $this->prerendered_data .= $this->load->view($this->view, $this->data, TRUE);
 	}
 	
+	/**
+	 * Partial rendering method, generally called via the helper.
+	 * renders partials and returns the result. Pass it an optional 
+	 * data array and an optional loop boolean to loop through a collection.
+	 *
+	 * @param string $name The partial name
+	 * @param array $data The data or collection to pass through
+	 * @param boolean $loop Whether or not to loop through a collection
+	 * @return string
+	 * @author Jamie Rumbelow and Jeremy Gimbel
+	 */
+	public function partial($name, $data = null, $loop = TRUE) {
+		$name = $this->partial . '/' . $name;
+		
+		if (!isset($data)) {
+			return $this->load->view($name, array(), TRUE);
+		} else {
+			if ($loop == TRUE) {
+				foreach ($data as $row) {
+					return $this->load->view($name, (array)$data, TRUE);
+				}
+			} else {
+				return $this->load->view($name, $data, TRUE);
+			}
+		}
+	}
+	
+}
+
+/**
+ * Partial rendering helper method, renders partials
+ * and returns the result. Pass it an optional data array
+ * and an optional loop boolean to loop through a collection.  
+ * 
+ * NOTE FROM JEREMY: If you are a 'elitist bastard' feel free
+ * 					 to chuck this in a helper, but we really
+ *					 don't care, because Jamie's Chieftain.
+ *
+ * @param string $name The partial name
+ * @param array $data The data or collection to pass through
+ * @param boolean $loop Whether or not to loop through a collection
+ * @return string
+ * @author Jamie Rumbelow and Jeremy Gimbel
+ */
+function partial($name, $data = null, $loop = TRUE) {
+	$ci =& get_instance();
+	return $ci->partial($name, $data, $loop);
 }
