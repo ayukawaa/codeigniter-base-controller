@@ -28,7 +28,7 @@ You can also override this functionality by setting the _$this->layout_ instance
 Model Loading
 -------------
 
-Set the _$this->models_ instance variable in your controller to be an array of all the models you want to load and this class will loop through that array, loading each one sequentially. It looks for the model with a filename of _$model\_name_\_model.php_ and the class name of _$model\_name\_model_, but will load the model into the CI super object under _$model\_name_. For instance, if my _$this->models_ array had a _'game'_ model, it would look for the file and class _Game\_model_ but will load it to _$this->game_.
+Set the _$this->models_ instance variable in your controller to be an array of all the models you want to load and this class will loop through that array, loading each one sequentially. It looks for the model with a filename of _$model\_name\_model.php_ and the class name of _$model\_name\_model_, but will load the model into the CI super object under _$model\_name_. For instance, if my _$this->models_ array had a _'game'_ model, it would look for the file and class _Game\_model_ but will load it to _$this->game_.
 
 Upcoming Features
 -----------------
